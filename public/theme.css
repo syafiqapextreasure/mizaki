@@ -1033,11 +1033,12 @@ main .spread .copy :is(p,div,li),main .spread .copy{font-size:var(--description-
 .benefit-card[data-benefit="13"],.benefit-card[data-benefit="14"]{grid-column:span 3}
 .benefit-card:is([data-benefit="15"],[data-benefit="16"],[data-benefit="17"]){grid-column:span 4}
 .selected-page .benefits-page{padding-bottom:clamp(14px,1.3vw,24px)}
-.benefit-end{display:grid;grid-template-columns:minmax(0,1fr) clamp(146px,12vw,210px);align-items:center;gap:clamp(14px,2vw,36px);margin-top:clamp(14px,1.4vw,24px);padding:10px 12px 10px clamp(16px,1.6vw,30px);border-left:4px solid var(--burgundy);background:#f5ebd7;border-radius:0 8px 8px 0}
+.benefit-end{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);align-items:center;gap:clamp(16px,3vw,48px);margin-top:clamp(14px,1.4vw,24px);border-left:4px solid var(--burgundy);background:#f5ebd7;border-radius:0 10px 10px 0;overflow:hidden}
+.benefit-end>p{padding:clamp(16px,2.3vw,40px)}
 .benefit-end strong,.benefit-end span{display:block}
 .benefit-end strong{color:var(--burgundy);font:700 clamp(20px,1.85vw,42px)/1.16 Georgia,serif;text-wrap:balance}
 .benefit-end span{margin-top:.28em;font-size:.9em}
-.benefit-end .source-photo img{border-radius:4px}
+.benefit-end .source-photo img{display:block;width:100%;height:auto}
 .choice-band h2,.choice-reminder h2{display:table;background:var(--brand-yellow);color:#51102a!important;padding:.12em .4em}
 .choice-band h3{margin:.45em 0}
 .selected-page .choice-band.dark-sheet h3{color:white}
@@ -1114,7 +1115,7 @@ main .spread .copy :is(p,div,li),main .spread .copy{font-size:var(--description-
  .founder-quote .source-photo,.founder-end .source-photo{max-width:320px}
  .benefit-card:has(.source-photo){display:grid;grid-template-columns:1fr}
  .benefit-card .source-photo{width:min(85%,260px)}
- .benefit-end{grid-template-columns:minmax(0,1fr) minmax(75px,27%);gap:10px;padding:10px}
+ .benefit-end{grid-template-columns:1fr;gap:0}
  .benefit-end .source-photo{width:100%}
  .press-grid .press-item h3{font-size:17px}
 }
@@ -1280,6 +1281,16 @@ dialog:has(.original-switch:not([hidden])) img{max-height:72vh}
 }
 .mentor-grid{overflow-y:hidden}
 
+/* Give the lead newspaper clipping a full column and preserve its printed edges. */
+.selected-page .benefit-card[data-benefit="1"]{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);align-items:center}
+.selected-page .benefit-card[data-benefit="1"] .source-photo{width:100%;float:none;margin:0}
+.selected-page .benefit-card[data-benefit="1"] .source-photo img{width:100%;height:auto;max-height:none}
+#tab-mana.selected-page{padding-bottom:0}
+@media(max-width:700px){
+ .selected-page .benefit-card[data-benefit="1"]{grid-template-columns:1fr}
+ .benefit-end{grid-template-columns:1fr;gap:0}
+}
+
 /* Keep each exhibit alongside the terms it explains. */
 .rate-notes,.comparison-copy,.fee-reasons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1em 3%}
 .rate-notes{margin:1.2em 0}
@@ -1358,5 +1369,50 @@ dialog:has(.original-switch:not([hidden])) img{max-height:72vh}
  .fee-gallery .source-photo::after{font-size:15px}
  .rate-schedule table{min-width:0;font-size:clamp(12px,3.45vw,18px)}
  .rate-schedule td,.rate-schedule th{padding:.48em .24em;overflow-wrap:anywhere}
+}
+@media (min-width: 1000px) {
+  :root {
+    --label-size: clamp(1rem, calc(.75rem + .4vw), 1.7rem);
+    --feature-size: calc(var(--description-size) * 1.18);
+  }
+
+  /* Shared navigation, hero and footer across all nine pages. */
+  header .wordmark b { font-size: clamp(31px, calc(19px + .9vw), 58px); }
+  header .wordmark span, header .button, .hero-band .button,
+  .hero-band .page-name, .site-footer .footer-id span,
+  .site-footer .copyright { font-size: var(--label-size); }
+  .site-footer .footer-id h2 { font-size: var(--feature-size); }
+
+  #tab-home .section-intro p, #tab-home .section-intro .ribbon span,
+  #tab-home .section-intro .audience-row > span span { font-size: var(--description-size); }
+  #tab-home .byline { font-size: var(--description-size) !important; max-width: min(100%, 70ch); }
+  #tab-home .step-list { --marker-size: clamp(40px, 2.4vw, 68px); }
+  #tab-home .step-list .timeline-caption, #tab-home .process-heading { font-size: var(--feature-size); }
+  #tab-home .process-heading p { font-size: inherit; }
+  #tab-home .step-list .step-row {
+    font-size: var(--description-size) !important;
+    grid-template-columns: var(--marker-size) minmax(0, 1fr);
+  }
+  #tab-home .step-count { width: var(--marker-size); height: var(--marker-size); }
+  #tab-home .step-count::before { font-size: var(--annotation-size); }
+  #tab-home .step-list .step-row::after { left: calc(var(--marker-size) / 2 - 1px); }
+  #tab-home .modular-content .p4 .stats-strip p,
+  #tab-home .modular-content .p3 .gold-type { font-size: var(--description-size) !important; }
+  #tab-home .modular-content .stat-headline { font-size: var(--feature-size); }
+  #tab-home .modular-content .p4 .stats-strip .amount,
+  #tab-home .modular-content .scan-price { font-size: calc(var(--feature-size) * 1.14); }
+  #tab-home .modular-content .fee-duration { font-size: var(--label-size); }
+  #tab-home .modular-content .p1 .bodycopy p:first-child,
+  #tab-home .modular-content .product-title { font-size: var(--feature-size) !important; }
+  #tab-home .p13 .bodycopy p.closing-2 { font-size: var(--feature-size) !important; }
+  #tab-home .p13 .bodycopy p.closing-3 { font-size: var(--description-size) !important; }
+  #tab-home .closing-2 .amount { font-size: 1.25em; }
+
+  #tab-pengenalan .horizon-text p:first-child, #tab-pengenalan .cost-copy p:first-child,
+  .selected-page .benefit-index, .selected-page .rail-buttons button,
+  .selected-page .guarantee-seal span { font-size: var(--label-size); }
+  .selected-page .mentor-grid p, .selected-page .fee-people figcaption,
+  .selected-page .fee-plot small, .selected-page .archive-hint,
+  .selected-page .choice-panorama summary { font-size: var(--annotation-size); }
 }
 .audience-row > span:nth-child(1)::before{background-image:url(media/4575f5e140cd4c442eca.webp)}.audience-row > span:nth-child(2)::before{background-image:url(media/cf6e3a9dd68dbd6493e3.webp)}.audience-row > span:nth-child(3)::before{background-image:url(media/4902d77642690e92ddb3.webp)}.audience-row > span:nth-child(4)::before{background-image:url(media/e6f98ec251e79016449f.webp)}.audience-row > span:nth-child(5)::before{background-image:url(media/f00726ef73152834a254.webp)}
